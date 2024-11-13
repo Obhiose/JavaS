@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>VERIFICA</title>
+<style>
+    p {
+        background-color: pink;
+        color: white;
+    }
+
+    h1 {
+        background-color: yellow;
+        color: blue;
+    }
+</style>
+</head>
+<body>
+    
+
+<h1>LISTS</h1>
+
+<p id="list1">Here has to contain even numbers from 2 - 100</p>
+<p id="list2">Here has to contain that days of each month in a non-leap year</p>
+
+<button onclick="wholeList()">ALL Lists</button>
+<button onclick="surprise()">surprise Me!</button>
+
+
+<script>
+    function wholeList() {
+        let evenNumbers = [];
+    for (let i = 2; i <= 100; i+= 2) {
+        evenNumbers.push(i);
+    }
+
+    let months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+
+        document.querySelector("#list1").innerHTML = evenNumbers.join(", ");
+        document.querySelector("#list2").innerHTML = months.join(", ");
+    }
+
+
+
+    function surprise(){
+        setTimeout(function(){
+            document.querySelector("h1").innerHTML = "I am surprised!";
+        }, 5000);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,326 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Button with Truck Animation</title>
+    <style>
+        /* CSS styles here */
+        /* CSS Variables */
+:root {
+    --primary: #275EFE;
+    --primary-light: #7699FF;
+    --dark: #1C212E;
+    --grey-dark: #3F4656;
+    --grey: #6C7486;
+    --grey-light: #CDD9ED;
+    --white: #FFF;
+    --green: #16BF78;
+    --sand: #DCB773;
+    --sand-light: #EDD9A9;
+}
+
+/* Global Styles */
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #E4ECFA;
+    margin: 0;
+}
+
+/* Order Button Styles */
+.order {
+    appearance: none;
+    border: none;
+    background: var(--dark);
+    position: relative;
+    height: 63px;
+    width: 240px;
+    padding: 0;
+    outline: none;
+    cursor: pointer;
+    border-radius: 32px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.order span {
+    position: absolute;
+    text-align: center;
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 500;
+    transition: opacity 0.3s ease;
+}
+
+.order span.default {
+    opacity: 1;
+    top: 19px;
+    left: 0;
+    right: 0;
+}
+
+.order span.success {
+    opacity: 0;
+    top: 19px;
+    left: 0;
+    right: 0;
+}
+
+.order span.success svg {
+    width: 12px;
+    height: 10px;
+    display: inline-block;
+    vertical-align: top;
+    fill: none;
+    margin: 7px 0 0 4px;
+    stroke: var(--green);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 16px;
+    stroke-dashoffset: 16px;
+    transition: stroke-dashoffset 0.3s ease;
+}
+
+.order:active {
+    transform: scale(0.96);
+}
+
+.order .truck {
+    width: 60px;
+    height: 41px;
+    position: absolute;
+    left: 100%;
+    top: 11px;
+    z-index: 1;
+    transform: translateX(24px);
+}
+
+.order .truck .back {
+    width: 60px;
+    height: 41px;
+    background: linear-gradient(var(--white), var(--grey-light));
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.order .truck .front {
+    width: 26px;
+    height: 41px;
+    background: var(--primary);
+    border-radius: 2px 9px 9px 2px;
+    position: absolute;
+    left: 60px;
+    top: 0;
+}
+
+.order .truck .front .window {
+    width: 22px;
+    height: 41px;
+    background: var(--white);
+    border-radius: 2px 8px 8px 2px;
+    position: absolute;
+    left: 2px;
+    top: 0;
+}
+
+.order .truck .light {
+    width: 3px;
+    height: 8px;
+    position: absolute;
+    left: 83px;
+    top: 4px;
+    background: yellow;
+    border-radius: 2px;
+    box-shadow: 0px 0px 10px 2px yellow;
+}
+
+.order .truck .light:before {
+    content: '';
+    height: 4px;
+    width: 7px;
+    opacity: 0;
+    transform: perspective(2px) rotateY(-15deg) scaleX(0.94);
+    position: absolute;
+    transform-origin: 0 50%;
+    left: 3px;
+    top: 50%;
+    margin-top: -2px;
+    background: linear-gradient(90deg, yellow, rgba(540, 220, 65, 0.7), rgba(240, 450, 915, 0));
+}
+
+.order .truck .light:after {
+    content: '';
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background: radial-gradient(yellow, rgba(255, 255, 0, 0));
+    opacity: 0.5;
+    border-radius: 50%;
+    left: 5px;
+    top: 10px;
+    transform: rotate(45deg);
+    box-shadow: 0px;
+}
+
+.order .truck .light.bottom {
+    top: 29px;
+}
+
+.order .box {
+    width: 21px;
+    height: 21px;
+    background: linear-gradient(var(--sand-light), var(--sand));
+    border-radius: 2px;
+    position: absolute;
+    right: 100%;
+    top: 21px;
+}
+
+.order .lines {
+    opacity: 0;
+    position: absolute;
+    height: 3px;
+    background: var(--green);
+    border-radius: 2px;
+    width: 6px;
+    top: 30px;
+    left: 100%;
+    box-shadow: 15px 0 0 var(--white), 30px 0 0 var(--white), 45px 0 0 var(--white), 60px 0 0 var(--white), 75px 0 0 var(--white), 90px 0 0 var(--white), 105px 0 0 var(--white), 120px 0 0 var(--white), 135px 0 0 var(--white), 150px 0 0 var(--white), 165px 0 0 var(--white), 180px 0 0 var(--white), 195px 0 0 var(--white), 210px 0 0 var(--white), 225px 0 0 var(--white), 240px 0 0 var(--white), 255px 0 0 var(--white), 270px 0 0 var(--white), 285px 0 0 var(--white), 300px 0 0 var(--white), 315px 0 0 var(--white), 330px 0 0 var(--white);
+}
+
+.order.animate .default {
+    opacity: 0;
+}
+
+.order.animate .success {
+    opacity: 1;
+}
+
+.order.animate .success svg {
+    stroke-dashoffset: 0;
+}
+
+.order.animate .truck {
+    animation: truck 10s ease forwards;
+}
+
+.order.animate .truck .light {
+    animation: light 10s ease forwards;
+}
+
+.order.animate .box {
+    animation: box 10s ease forwards;
+}
+
+.order.animate .lines {
+    animation: lines 10s ease forwards;
+}
+
+@keyframes truck {
+    10%, 30% {
+        transform: translateX(-164px);
+    }
+    40% {
+        transform: translateX(-104px);
+    }
+    60% {
+        transform: translateX(-224px);
+    }
+    75%, 100% {
+        transform: translateX(24px);
+    }
+}
+
+@keyframes lines {
+    0%, 30% {
+        opacity: 0;
+        transform: scaleY(0.7) translateX(0);
+    }
+    35%, 65% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 0;
+    }
+    100% {
+        transform: scaleY(0.7) translateX(-400px);
+    }
+}
+
+@keyframes light {
+    0%, 30% {
+        opacity: 0;
+    }
+    40%, 100% {
+        opacity: 1;
+        box-shadow: 0px 0px 10px 2px yellow;
+    }
+}
+
+@keyframes box {
+    8%, 10% {
+        transform: translateX(40px);
+        opacity: 1;
+    }
+    25% {
+        transform: translateX(112px);
+        opacity: 1;
+    }
+    26% {
+        transform: translateX(112px);
+        opacity: 0;
+    }
+    27%, 100% {
+        transform: translateX(0px);
+        opacity: 0;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <button class="order">
+        <span class="default">Complete Order</span>
+        <span class="success">Order Placed
+            <svg viewBox="0 0 12 10">
+                <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+            </svg>
+        </span>
+        <div class="truck">
+            <div class="back"></div>
+            <div class="front">
+                <div class="window"></div>
+            </div>
+            <div class="light top"></div>
+            <div class="light bottom"></div>
+        </div>
+        <div class="box"></div>
+        <div class="lines"></div>
+    </button>
+
+<script>
+/* JavaScript code here */
+
+
+    const button = document.querySelector('.order');
+    button.addEventListener('click', () => {
+        if (!button.classList.contains('animate')) {
+        button.classList.add('animate');
+            setTimeout(() => {
+            button.classList.remove('animate');
+            }, 10000);
+        }
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+:root {
+  --primary: #275EFE;
+  --primary-light: #7699FF;
+  --dark: #1C212E;
+  --grey-dark: #3F4656;
+  --grey: #6C7486;
+  --grey-light: #CDD9ED;
+  --white: #FFF;
+  --green: #16BF78;
+  --sand: #DCB773;
+  --sand-light: #EDD9A9;
+  --yellow: #FFD700;
+}
+
+/* Center the button on the screen */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;  /* Make sure the body takes up the full viewport height */
+  margin: 0;  /* Remove default margin */
+  background-color: #f0f0f0;  /* Optional background for the page */ 
+}
+
+/* Main button styles */
+.order {
+  appearance: none;
+  border: 0;
+  background: var(--dark);
+  position: relative;
+  height: 63px;
+  width: 240px;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+  border-radius: 32px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.order span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 19px;
+  line-height: 24px;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.order span.default {
+  opacity: 1;
+  transition-delay: 0.3s;
+}
+
+.order span.success {
+  opacity: 0;
+}
+
+.order span.success svg {
+  width: 12px;
+  height: 10px;
+  vertical-align: top;
+  fill: none;
+  margin: 7px 0 0 4px;
+  stroke: var(--green);
+  stroke-width: 2;
+  stroke-dasharray: 16px;
+  stroke-dashoffset: 16px;
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+/* Truck styles */
+.order .truck {
+  width: 60px;
+  height: 41px;
+  position: absolute;
+  top: 11px;
+  left: 100%; /* Start off-screen */
+  transform: translateX(24px); /* Starting position */
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+/* Truck back and front parts */
+.order .truck .back {
+  background: linear-gradient(var(--grey-light), var(--grey));
+  width: 60px;
+  height: 41px;
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.order .truck .front {
+  background: linear-gradient(var(--primary), var(--primary-light));
+  width: 26px;
+  height: 41px;
+  border-radius: 2px 9px 9px 2px;
+  position: absolute;
+  left: 60px;
+  top: 0;
+}
+
+/* Truck window */
+.order .truck .front .window {
+  background: var(--white);
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  position: absolute;
+  top: 8px;
+  left: 2px;
+}
+
+/* Truck lights */
+.order .truck .light {
+  width: 3px;
+  height: 8px;
+  background: var(--yellow);
+  border-radius: 2px;
+  position: absolute;
+  left: 83px;
+}
+
+.order .truck .light.top {
+  top: 4px;
+}
+
+.order .truck .light.bottom {
+  bottom: 4px;
+}
+
+/* Animated Box */
+.order .box {
+  background: linear-gradient(var(--sand-light), var(--sand));
+  width: 21px;
+  height: 21px;
+  position: absolute;
+  right: 100%;
+  top: 21px;
+  border-radius: 2px;
+}
+
+/* Animation classes */
+.order.animate .default {
+  opacity: 0;
+  transition-delay: 0s;
+}
+
+.order.animate .success {
+  opacity: 1;
+  transition-delay: 0s;
+}
+
+.order.animate .success svg {
+  stroke-dashoffset: 0; /* Show the green check */
+  transition-delay: 0s;
+}
+
+/* Truck Animation */
+.order.animate .truck {
+  animation: truck 2s ease forwards;
+}
+
+.order.animate .box {
+  animation: box 2s ease forwards;
+}
+
+/* Keyframes for truck moving left across the button */
+@keyframes truck {
+  0% {
+      transform: translateX(24px); /* Start slightly off-screen */
+  }
+  100% {
+      transform: translateX(-250px); /* Move across the button */
+  }
+}
+
+/* Box sliding with the truck */
+@keyframes box {
+  0% {
+      transform: translateX(0);
+      opacity: 1;
+  }
+  50% {
+      transform: translateX(120px);
+  }
+  100% {
+      transform: translateX(200px);
+      opacity: 0;
+  }
+}
+
+/* Lines animation to simulate movement */
+.order .lines {
+  opacity: 0;
+  position: absolute;
+  height: 3px;
+  background: var(--white);
+  border-radius: 2px;
+  width: 6px;
+  top: 30px;
+  left: 100%;
+  box-shadow: 15px 0 0 var(--white), 30px 0 0 var(--white), 45px 0 0 var(--white), 60px 0 0 var(--white), 75px 0 0 var(--white);
+}
+
+.order.animate .lines {
+  animation: lines 2s ease forwards;
+}
+
+@keyframes lines {
+  0% {
+      opacity: 1;
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(-200px);
+      opacity: 0;
+  }
+}
+

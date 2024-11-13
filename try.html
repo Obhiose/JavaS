@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            background-color: yellow;
+            color: blue;
+        }
+
+        p {
+            background-color: pink;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<h1>Lists</h1>
+<p id="list1">Even Numbers</p>
+<p id="list2">Months</p>
+
+<button onclick="wholelist()">Whole list</button>
+<button onclick="surprise()">Surprise me!</button>
+    
+
+
+
+
+
+
+
+
+<script>
+
+function wholelist() {
+    let evenNumbers = [];
+    for ( let i = 2; i <= 100; i += 2) {
+        evenNumbers.push(i);
+    }
+
+    let months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+
+    document.querySelector("#list1").innerHTML = evenNumbers.join(", ");
+    document.querySelector("#list2").innerHTML = months.join(", ");
+}
+
+
+function surprise() {
+    setTimeout(function(){
+        document.querySelector("h1").innerHTML = "Surprise!"
+    }, 5000);
+}
+
+
+
+
+</script>
+</body>
+</html>

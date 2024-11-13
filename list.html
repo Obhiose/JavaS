@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1 {
+            background-color: yellow;
+            color: blue;
+        }
+
+        /*Il colore di sfondo dei capoversi (elementi "p") presenti nella pagina è rosa ("pink") */
+        p {
+            background-color: pink;
+            color: white;
+        }
+            
+    </style>
+</head>
+<body>
+    
+
+    
+    
+    
+    
+<h1>Liste</h1>
+<p id="lista1">Qui devono comparire tutti i numeri pari compresi tra 2 e 100.</p>
+<p id="lista2">Qui devono comparire i dodici numeri corrispondenti alla lunghezza dei mesi di un anno non bisestile.</p>
+    
+<button onclick="wholeList()">Popola le liste</button>
+<button onclick="surprise()">surprise me!!</button>
+    
+    
+    
+    
+    
+    
+    
+<script>
+    function wholeList() {
+        // Array per i numeri pari tra 2 e 100
+        let evenNumbers = [];
+        for (let i = 2; i <= 100; i += 2) {
+            evenNumbers.push(i);
+        }
+    
+        // Array per la durata dei mesi in un anno non bisestile
+        let months = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        
+        // Popolamento delle liste
+        document.querySelector("#lista1").innerHTML = evenNumbers.join(", "); 
+        document.querySelector("#lista2").innerHTML = months.join(", ");
+    }
+    
+    function surprise() {
+        // Modifica il titolo dopo 5 secondi
+        setTimeout(function() {
+            document.querySelector("h1").innerText = "Sorpresa!";
+        }, 5000);
+    }
+
+</script>
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
